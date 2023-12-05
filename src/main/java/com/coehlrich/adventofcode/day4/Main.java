@@ -39,14 +39,12 @@ public class Main implements Day {
         }
         for (int i = 0; i < cards.size(); i++) {
             Card card = cards.get(i);
-            for (int num = 0; num < part2.get(i); num++) {
-                int winnings = 0;
-                for (int gotten : card.gotten) {
-                    if (card.winning.contains(gotten)) {
-                        winnings++;
-                        if (i + winnings < cards.size()) {
-                            part2.put(i + winnings, part2.get(i + winnings) + 1);
-                        }
+            int winnings = 0;
+            for (int gotten : card.gotten) {
+                if (card.winning.contains(gotten)) {
+                    winnings++;
+                    if (i + winnings < cards.size()) {
+                        part2.put(i + winnings, part2.get(i + winnings) + part2.get(i));
                     }
                 }
             }
