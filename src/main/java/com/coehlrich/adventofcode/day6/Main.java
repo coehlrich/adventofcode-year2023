@@ -27,8 +27,9 @@ public class Main implements Day {
         for (Race race : races) {
             int count = 0;
             long raceTime = race.time();
+            long raceDistance = race.distance();
             for (long i = 1; i < raceTime; i++) {
-                if (i * (raceTime - i) > race.distance()) {
+                if (i * (raceTime - i) > raceDistance) {
                     count++;
                 }
             }
