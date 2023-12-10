@@ -9,6 +9,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 import java.util.Queue;
 
 public class Main implements Day {
@@ -51,9 +52,18 @@ public class Main implements Day {
             int distance = next.distance();
             List<Direction> dirs;
             if (dir == null) {
+                dirs = new ArrayList<>();
                 for (Direction direction : Direction.values()) {
-                    
+                    if (Set.of(tiles.get(direction.offset(pos))).contains(direction.opposite())) {
+                        dirs.add(direction);
+                    }
                 }
+            } else {
+                List.of(dir);
+            }
+
+            for (Direction direction : dirs) {
+                Point2 check = direction.offset(pos);
             }
 
         }
