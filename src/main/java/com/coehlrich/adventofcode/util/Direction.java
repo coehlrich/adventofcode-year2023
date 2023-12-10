@@ -17,4 +17,13 @@ public enum Direction {
     public Point2 offset(Point2 point) {
         return new Point2(point.x() + x, point.y() + y);
     }
+
+    public Direction opposite() {
+        return switch (this) {
+            case UP -> DOWN;
+            case DOWN -> UP;
+            case LEFT -> RIGHT;
+            case RIGHT -> LEFT;
+        };
+    }
 }
