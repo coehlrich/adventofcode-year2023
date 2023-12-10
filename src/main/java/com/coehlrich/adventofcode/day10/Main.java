@@ -62,8 +62,13 @@ public class Main implements Day {
                 List.of(dir);
             }
 
+            int newDistance = distance + 1;
             for (Direction direction : dirs) {
                 Point2 check = direction.offset(pos);
+                if (!distances.containsKey(check) || distances.getInt(check) < newDistance) {
+                    distances.put(check, newDistance);
+                    queue.add(new State(check, direction, newDistance));
+                }
             }
 
         }
