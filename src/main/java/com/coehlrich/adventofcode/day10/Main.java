@@ -41,13 +41,25 @@ public class Main implements Day {
 
         Object2IntMap<Point2> distances = new Object2IntOpenHashMap<>();
 
-        Queue<Point2> queue = new LinkedList<>();
+        Queue<State> queue = new LinkedList<>();
         distances.put(starting, 0);
-        queue.add(starting);
+        queue.add(new State(starting, null, 0));
         while (!queue.isEmpty()) {
-            Point2 next = queue.poll();
+            State next = queue.poll();
+            Point2 pos = next.pos();
+            Direction dir = next.direction();
+            int distance = next.distance();
+            List<Direction> dirs;
+            if (dir == null) {
+                for (Direction direction : Direction.values()) {
+                    
+                }
+            }
+
         }
         return new Result(0, 0);
     }
+
+    public static record State(Point2 pos, Direction direction, int distance) {}
 
 }
