@@ -72,7 +72,7 @@ public class Main implements Day {
             }
 
         }
-        return new Result(0, 0);
+        return new Result(IntStream.of(distances.values()).max().get(), 0);
     }
 
     public static record State(Point2 pos, Direction direction, int distance) {}
