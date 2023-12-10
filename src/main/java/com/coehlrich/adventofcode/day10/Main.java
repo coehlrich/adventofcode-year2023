@@ -42,6 +42,11 @@ public class Main implements Day {
         Object2IntMap<Point2> distances = new Object2IntOpenHashMap<>();
 
         Queue<Point2> queue = new LinkedList<>();
+        distances.put(starting, 0);
+        queue.add(starting);
+        while (!queue.isEmpty()) {
+            Point2 next = queue.poll();
+        }
         return new Result(0, 0);
     }
 
