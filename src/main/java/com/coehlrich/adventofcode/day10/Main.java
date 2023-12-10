@@ -59,12 +59,10 @@ public class Main implements Day {
                 dirs = new ArrayList<>();
                 for (Direction direction : Direction.values()) {
                     if (Set.of(tiles.get(direction.offset(pos)).directions).contains(direction.opposite())) {
-                        System.out.println(direction);
                         dirs.add(direction);
                     }
                 }
             } else {
-                System.out.println(tiles.get(pos));
                 dirs = List.of(tiles.get(pos).getOpposite(dir.opposite()));
             }
 
@@ -78,7 +76,30 @@ public class Main implements Day {
             }
 
         }
-        System.out.println(distances);
+
+        for (Point2 pos : distances.keySet()) {
+            tiles.put(pos, Type.LOOP);
+        }
+
+        Queue<Point2> toMark = new LinkedList<>();
+        int maxX = tiles.keySet().stream().mapToInt(Point2::x).max().getAsInt();
+        int maxY = tiles.keySet().stream().mapToInt(Point2::y).max().getAsInt();
+        for (int y = 0; y <= maxY; y++) {
+            toMark.add(new Point2(0, y));
+            toMark.add(new Point2(maxX, y));
+        }
+
+        for (int x = 0; x <= maxX; x++) {
+            toMark.add(new Point2(x, 0));
+            toMark.add(new Point2(x, maxY));
+        }
+
+        while (!toMark.isEmpty()) {
+            Point2 check = toMark.poll();
+            if (tiles.get(check) != Type.LOOP) {
+
+            }
+        }
         return new Result(distances.values().intStream().max().getAsInt(), 0);
     }
 
