@@ -2,10 +2,13 @@ package com.coehlrich.adventofcode.day10;
 
 import com.coehlrich.adventofcode.Day;
 import com.coehlrich.adventofcode.Result;
+import com.coehlrich.adventofcode.util.Direction;
 import com.coehlrich.adventofcode.util.Point2;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
+import java.util.stream.IntStream;
+import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
