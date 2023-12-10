@@ -63,7 +63,7 @@ public class Main implements Day {
                     }
                 }
             } else {
-                List.of(dir);
+                dirs = List.of(dir);
             }
 
             int newDistance = distance + 1;
