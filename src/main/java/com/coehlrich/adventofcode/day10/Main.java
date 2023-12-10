@@ -8,6 +8,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 
 import java.util.stream.IntStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -75,7 +76,7 @@ public class Main implements Day {
             }
 
         }
-        return new Result(IntStream.of(distances.values()).max().get(), 0);
+        return new Result(distances.values().intStream().max().get(), 0);
     }
 
     public static record State(Point2 pos, Direction direction, int distance) {}
