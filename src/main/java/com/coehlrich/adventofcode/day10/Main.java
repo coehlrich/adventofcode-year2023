@@ -96,7 +96,7 @@ public class Main implements Day {
 
         while (!toMark.isEmpty()) {
             Point2 check = toMark.poll();
-            if (tiles.containsKey(check) && tiles.get(check) != Type.LOOP && tiles.get(check) != Type.OUTSIDE)) {
+            if (tiles.containsKey(check) && tiles.get(check) != Type.LOOP && tiles.get(check) != Type.OUTSIDE) {
                 tiles.put(check, Type.OUTSIDE);
                 for (Direction dir : Direction.values()) {
                     Point2 newCheck = dir.offset(dir);
