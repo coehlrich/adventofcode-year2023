@@ -9,8 +9,6 @@ public enum Type {
     NORTH_WEST(Direction.UP, Direction.LEFT),
     SOUTH_WEST(Direction.DOWN, Direction.LEFT),
     SOUTH_EAST(Direction.DOWN, Direction.RIGHT),
-    LOOP,
-    OUTSIDE,
     GROUND,
     STARTING;
 
