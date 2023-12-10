@@ -58,24 +58,27 @@ public class Main implements Day {
             if (dir == null) {
                 dirs = new ArrayList<>();
                 for (Direction direction : Direction.values()) {
-                    if (Set.of(tiles.get(direction.offset(pos))).contains(direction.opposite())) {
+                    if (Set.of(tiles.get(direction.offset(pos)).directions).contains(direction.opposite())) {
+                        System.out.println(direction);
                         dirs.add(direction);
                     }
                 }
             } else {
-                dirs = List.of(dir);
+                System.out.println(tiles.get(pos));
+                dirs = List.of(tiles.get(pos).getOpposite(dir.opposite()));
             }
 
             int newDistance = distance + 1;
             for (Direction direction : dirs) {
                 Point2 check = direction.offset(pos);
-                if (!distances.containsKey(check) || distances.getInt(check) < newDistance) {
+                if (!distances.containsKey(check) || distances.getInt(check) > newDistance) {
                     distances.put(check, newDistance);
                     queue.add(new State(check, direction, newDistance));
                 }
             }
 
         }
+        System.out.println(distances);
         return new Result(distances.values().intStream().max().getAsInt(), 0);
     }
 
