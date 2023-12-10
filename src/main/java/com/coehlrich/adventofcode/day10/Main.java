@@ -99,7 +99,7 @@ public class Main implements Day {
             if (tiles.containsKey(check) && tiles.get(check) != Type.LOOP && tiles.get(check) != Type.OUTSIDE) {
                 tiles.put(check, Type.OUTSIDE);
                 for (Direction dir : Direction.values()) {
-                    Point2 newCheck = check.offset(dir);
+                    Point2 newCheck = dir.offset(check);
                     toMark.add(newCheck);
                 }
             }
