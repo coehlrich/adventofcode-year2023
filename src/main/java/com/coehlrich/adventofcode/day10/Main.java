@@ -96,11 +96,15 @@ public class Main implements Day {
 
         while (!toMark.isEmpty()) {
             Point2 check = toMark.poll();
-            if (tiles.get(check) != Type.LOOP) {
-
+            if (tiles.get(check) != null && tiles.get(check) != Type.LOOP && tiles.get(check) != Type.OUTSIDE)) {
+                tiles.put(check, Type.OUTSIDE);
+                for (Direction dir : Direction.values()) {
+                    Point2 newCheck = dir.offset(dir);
+                    toMark.add(newCheck);
+                }
             }
         }
-        return new Result(distances.values().intStream().max().getAsInt(), 0);
+        return new Result(distances.values().intStream().max().getAsInt(), tiles.values().stream().filter(tile -> tile != Type.LOOP && tile != Type.OUTSIDE).count());
     }
 
     public static record State(Point2 pos, Direction direction, int distance) {}
