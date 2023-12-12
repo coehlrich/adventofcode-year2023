@@ -45,12 +45,12 @@ public record Row(List<Type> row, IntList clues) {
     public long possible() {
         List<Type> row = new ArrayList<>(row());
         row.add(Type.OPERATIONAL);
-        Object2LongMap<State> states = new Object2LongOpenHashMap<>(new State[] { new State(row, clues, 0) }, new long[] { 1 });
-        while (!states.keySet().stream().map(State::row).allMatch(List::isEmpty)) {
+        Object2LongMap<State> states = new Object2LongOpenHashMap<>(new State[] { new State(0, 0) }, new long[] { 1 });
+        for (int position = 0; position < row.size(); position++) {
             Object2LongMap<State> newStates = new Object2LongOpenHashMap<>();
+            Type current = row.get(position);
             for (Object2LongMap.Entry<State> entry : states.object2LongEntrySet()) {
                 State state = entry.getKey();
-                Type current = state.row().get(0);
                 List<State> toAdd = switch (current) {
                     case OPERATIONAL -> operational(state);
                     case DAMAGED -> damaged(state);
@@ -64,32 +64,30 @@ public record Row(List<Type> row, IntList clues) {
         }
         return states.object2LongEntrySet()
                 .stream()
-                .filter(entry -> entry.getKey().clues().isEmpty())
+                .filter(entry -> entry.getKey().clues() == clues.size())
                 .mapToLong(Object2LongMap.Entry::getLongValue)
                 .sum();
     }
 
     private List<State> operational(State state) {
-        List<Type> newRow = state.row().subList(1, state.row().size());
-        if (state.damaged() == 0 || state.damaged() == state.clues().getInt(0)) {
-            IntList newClues = state.clues();
+        if (state.damaged() == 0 || state.damaged() == clues.getInt(state.clues())) {
+            int newClues = state.clues();
             if (state.damaged() > 0) {
-                newClues = newClues.subList(1, newClues.size());
+                newClues++;
             }
-            return List.of(new State(newRow, newClues, 0));
+            return List.of(new State(newClues, 0));
         } else if (state.damaged() == 0) {
-            return List.of(new State(newRow, state.clues(), 0));
+            return List.of(new State(state.clues(), 0));
         }
         return List.of();
     }
 
     private List<State> damaged(State state) {
-        List<Type> newRow = state.row().subList(1, state.row().size());
         int damaged = state.damaged() + 1;
-        if (state.clues().isEmpty() || damaged > state.clues().getInt(0)) {
+        if (state.clues() == clues.size() || damaged > clues.getInt(state.clues())) {
             return List.of();
         }
-        return List.of(new State(newRow, state.clues(), damaged));
+        return List.of(new State(state.clues(), damaged));
     }
 
     private List<State> unknown(State state) {
