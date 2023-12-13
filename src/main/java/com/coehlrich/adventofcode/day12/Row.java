@@ -70,12 +70,8 @@ public record Row(List<Type> row, IntList clues) {
     }
 
     private List<State> operational(State state) {
-        if (state.damaged() == 0 || state.damaged() == clues.getInt(state.clues())) {
-            int newClues = state.clues();
-            if (state.damaged() > 0) {
-                newClues++;
-            }
-            return List.of(new State(newClues, 0));
+        if (state.clues() < clues.size() && state.damaged() == clues.getInt(state.clues())) {
+            return List.of(new State(state.clues() + 1, 0));
         } else if (state.damaged() == 0) {
             return List.of(new State(state.clues(), 0));
         }
