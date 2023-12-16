@@ -1,10 +1,15 @@
 package com.coehlrich.adventofcode.util;
 
+import java.util.Set;
+
 public enum Direction {
     UP(0, -1),
     RIGHT(1, 0),
     DOWN(0, 1),
     LEFT(-1, 0);
+
+    public static final Set<Direction> HORIZONTAL = Set.of(LEFT, RIGHT);
+    public static final Set<Direction> VERTICAL = Set.of(UP, DOWN);
 
     public final int x;
     public final int y;
