@@ -33,7 +33,7 @@ public class Main implements Day {
             }
         });
         Object2IntMap<Cache> min = new Object2IntOpenHashMap<>();
-        states.add(new State(start, null, 0, 0, new Object2IntOpenHashMap<>()));
+        states.add(new State(start, null, 0, 0));
         while (!states.isEmpty()) {
             State state = states.poll();
 //            System.out.println(state.pos());
@@ -61,9 +61,7 @@ public class Main implements Day {
                         if (!min.containsKey(cacheKey) || min.getInt(cacheKey) > heatLoss) {
 //                        Set<Point2> history = new HashSet<>(state.history());
 //                        if (history.add(newPos)) {
-                            Object2IntMap<Point2> history = new Object2IntOpenHashMap<>(state.history());
-                            history.put(newPos, heatLoss);
-                            states.add(new State(newPos, dir, state.dir() == dir ? state.steps() + 1 : 1, heatLoss, history));
+                            states.add(new State(newPos, dir, state.dir() == dir ? state.steps() + 1 : 1, heatLoss));
                             min.put(cacheKey, heatLoss);
 //                        }
 //                            min.put(newPos, heatLoss);
