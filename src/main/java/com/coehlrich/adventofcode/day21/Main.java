@@ -9,7 +9,10 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import org.apache.commons.math3.fitting.PolynomialCurveFitter;
 import org.apache.commons.math3.fitting.WeightedObservedPoint;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Main implements Day {
 
@@ -151,7 +154,7 @@ public class Main implements Day {
         int part1 = 1;
         PolynomialCurveFitter fitter = PolynomialCurveFitter.create(2);
         List<WeightedObservedPoint> points = new ArrayList<>();
-        for (int i = 0; i <= 8 * map.length + remaining; i++) {
+        for (int i = 0; i <= 4 * map.length + remaining; i++) {
 //            if (i == 6 ||
 //                    i == 10 ||
 //                    i == 50 ||
@@ -198,7 +201,7 @@ public class Main implements Day {
 //        System.out.println("x=" + (65 + 131 * 5) + " y=" + visit(map, start, true, 65 + 131 * 5));
 //        System.out.println(distances.get(start).values().intStream().filter(num -> num % 2 == steps % 2).max().getAsInt());
         long x = loops / 2;
-        System.out.println(Arrays.toString(problem));
+        System.out.println("y = " + Math.round(problem[2]) + "x^2 + " + Math.round(problem[1]) + "x + " + Math.round(problem[0]));
         return new Result(
                 part1,
                 (long) Math.round((problem[2] * x * x) + (problem[1] * x) + problem[0]));
