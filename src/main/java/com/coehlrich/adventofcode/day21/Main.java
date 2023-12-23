@@ -129,7 +129,7 @@ public class Main implements Day {
 //            edges.add(pos);
 //        }
 
-        long steps = 26501365;
+        long steps = 202300 * 131 + 65;
 //        for (Point2 key : distances.keySet()) {
 //            System.out.println(key + ": " + distances.get(key).values().intStream().max().getAsInt());
 //            int value = distances.get(key).values().intStream().filter(num -> num % 2 == steps % 2).max().getAsInt();
@@ -154,6 +154,7 @@ public class Main implements Day {
         int part1 = 1;
         PolynomialCurveFitter fitter = PolynomialCurveFitter.create(2);
         List<WeightedObservedPoint> points = new ArrayList<>();
+//        LongList numbers = new LongArrayList();
         for (int i = 0; i < 4 * map.length + remaining; i++) {
 //            if (i == 6 ||
 //                    i == 10 ||
@@ -186,6 +187,7 @@ public class Main implements Day {
             if (i % (map.length * 2) + 1 == remaining) {
 //              System.out.println(result);
 //              System.out.println(i);
+//                numbers.add(result);
                 points.add(new WeightedObservedPoint(1, i + 1, result));
 //              System.out.println(i / map.length / 2);
             }
@@ -200,8 +202,20 @@ public class Main implements Day {
 //        System.out.println("x=" + (65 + 131 * 4) + " y=" + visit(map, start, true, 65 + 131 * 4));
 //        System.out.println("x=" + (65 + 131 * 5) + " y=" + visit(map, start, true, 65 + 131 * 5));
 //        System.out.println(distances.get(start).values().intStream().filter(num -> num % 2 == steps % 2).max().getAsInt());
+//        long first = numbers.getLong(0);
+//        long second = numbers.getLong(1);
+//        long x1 = map.length * 0 + 65;
+//        long x2 = map.length * 2 + 65;
+//        long diff = map.length
+//
+//        long a = 1;
+//        first = first - a * x1 * x1;
+//        second = second - a * x2 * x2;
+//
+//        long b = (second - first) / (map.length * 2);
+//        System.out.println(b);
         long x = steps;
-        System.out.println("y = " + Math.round(problem[2]) + "x^2 + " + Math.round(problem[1]) + "x + " + Math.round(problem[0]));
+        System.out.println("y = " + problem[2] + "x^2 + " + problem[1] + "x + " + problem[0]);
         return new Result(
                 part1,
                 (long) Math.round((problem[2] * x * x) + (problem[1] * x) + problem[0]));
