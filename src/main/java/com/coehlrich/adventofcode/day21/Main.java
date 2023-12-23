@@ -167,7 +167,7 @@ public class Main implements Day {
             if (i % (map.length * 2) == remaining) {
 //                System.out.println(result);
 //                System.out.println(i);
-                points.add(new WeightedObservedPoint(1, i / map.length / 2, result));
+                points.add(new WeightedObservedPoint(1, i, result));
 //                System.out.println(i / map.length / 2);
             }
             newVisiting = new HashSet<>();
@@ -200,7 +200,7 @@ public class Main implements Day {
 //        System.out.println("x=" + (65 + 131 * 4) + " y=" + visit(map, start, true, 65 + 131 * 4));
 //        System.out.println("x=" + (65 + 131 * 5) + " y=" + visit(map, start, true, 65 + 131 * 5));
 //        System.out.println(distances.get(start).values().intStream().filter(num -> num % 2 == steps % 2).max().getAsInt());
-        long x = loops / 2;
+        long x = steps;
         System.out.println("y = " + Math.round(problem[2]) + "x^2 + " + Math.round(problem[1]) + "x + " + Math.round(problem[0]));
         return new Result(
                 part1,
