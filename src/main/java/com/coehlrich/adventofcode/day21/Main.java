@@ -154,7 +154,7 @@ public class Main implements Day {
         int part1 = 1;
         PolynomialCurveFitter fitter = PolynomialCurveFitter.create(2);
         List<WeightedObservedPoint> points = new ArrayList<>();
-        for (int i = 0; i <= 4 * map.length + remaining; i++) {
+        for (int i = 0; i < 4 * map.length + remaining; i++) {
 //            if (i == 6 ||
 //                    i == 10 ||
 //                    i == 50 ||
@@ -164,12 +164,6 @@ public class Main implements Day {
 //                    i == 5000) {
 //                System.out.println(result);
 //            }
-            if (i % (map.length * 2) == remaining) {
-//                System.out.println(result);
-//                System.out.println(i);
-                points.add(new WeightedObservedPoint(1, i, result));
-//                System.out.println(i / map.length / 2);
-            }
             newVisiting = new HashSet<>();
             for (Point2 visit : visiting) {
                 for (Direction dir : Direction.values()) {
@@ -189,6 +183,12 @@ public class Main implements Day {
                 }
             }
             visiting = newVisiting;
+            if (i % (map.length * 2) + 1 == remaining) {
+//              System.out.println(result);
+//              System.out.println(i);
+                points.add(new WeightedObservedPoint(1, i + 1, result));
+//              System.out.println(i / map.length / 2);
+            }
         }
 
         double[] problem = fitter.fit(points);
