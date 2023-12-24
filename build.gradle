@@ -24,6 +24,7 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'com.github.Querz:NBT:6.1'
     implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'tools.aqua:z3-turnkey:4.12.2'
 }
 
 java {
